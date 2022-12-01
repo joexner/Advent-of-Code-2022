@@ -13,3 +13,5 @@ with open(filename) as file:
             group_value = 0
 
 print(max(groups))
+
+print(sum(sorted(groups, reverse=True)[0:3]))
