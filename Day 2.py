@@ -8,30 +8,30 @@ with open(filename) as file:
         my_move = line[2]
         match my_move:
             case 'X':
-                score += 1
+                score += 0
                 match opponent_move:
                     case 'A':
                         score += 3
                     case 'B':
-                        score += 0
+                        score += 1
                     case 'C':
-                        score += 6
+                        score += 2
             case 'Y':
-                score += 2
-                match opponent_move:
-                    case 'A':
-                        score += 6
-                    case 'B':
-                        score += 3
-                    case 'C':
-                        score += 0
-            case 'Z':
                 score += 3
                 match opponent_move:
                     case 'A':
-                        score += 0
+                        score += 1
                     case 'B':
-                        score += 6
+                        score += 2
                     case 'C':
                         score += 3
+            case 'Z':
+                score += 6
+                match opponent_move:
+                    case 'A':
+                        score += 2
+                    case 'B':
+                        score += 3
+                    case 'C':
+                        score += 1
     print(score)
