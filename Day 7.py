@@ -33,6 +33,7 @@ with open('Day 7 input.txt') as file:
                 pwd = pwd['contents'][dirname]
 
 small_dirs_total_size = 0
+dir_sizes = []
 
 def walk(dir) -> int:
     total = 0
@@ -48,8 +49,17 @@ def walk(dir) -> int:
         global small_dirs_total_size
         small_dirs_total_size += total
 
+    global dir_sizes
+    dir_sizes.append(total)
+
     return total
 
-walk(fs_root)
+total_fs_size = walk(fs_root)
 
 print(small_dirs_total_size)
+
+space_available = 70_000_000 - total_fs_size
+space_needed = 30_000_000 - space_available
+
+directories_big_enough = [d for d in dir_sizes if d >= space_needed]
+print(min(directories_big_enough))
