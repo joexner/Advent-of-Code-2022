@@ -3,6 +3,7 @@ import math
 register = 1
 cycle = 0
 signal_strength_sum = 0
+times_to_check = iter(range(20, 240, 40))
 next_time_to_check = None
 
 
@@ -19,10 +20,17 @@ def increment_counter_and_check():
         global signal_strength_sum
         signal_strength_sum += signal_strength
         next_time_to_check = None
+    pixel = (cycle-1) % 40
+    if abs(pixel - register) <= 1:
+        print("#", end='')
+    else:
+        print(".", end='')
+    if pixel == 39:
+        print()
+
+
 
 with open('Day 10 input.txt') as file:
-    global times_to_check
-    times_to_check = iter(range(20, 240, 40))
     for line in file:
         if line.strip() == 'noop':
             increment_counter_and_check()
